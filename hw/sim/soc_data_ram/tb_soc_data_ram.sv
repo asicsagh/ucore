@@ -3,66 +3,61 @@
 module tb_soc_data_ram;
 
 
-/* Local variables and signals */
+    /* Local variables and signals */
 
-logic clk, rst_n;
-
-
-/* BFMs instantiation */
-
-clk_gen #(
-    .FREQUENCY_MHZ(50)
-) u_clk_gen (
-    .clk
-);
-
-rst_n_gen u_rst_n_gen (
-    .rst_n,
-    .clk
-);
+    logic clk, rst_n;
 
 
-/* Submodules placement */
+    /* BFMs instantiation */
 
-soc dut (
-    .clk,
-    .rst_n,
+    clk_gen #(.FREQUENCY_MHZ(50)) u_clk_gen (.clk);
 
-    .uart_sout(),
-    .uart_sin(1'b1),
-
-    .gpio_dout(),
-    .gpio_din(32'b0)
-);
+    rst_n_gen u_rst_n_gen (
+        .rst_n,
+        .clk
+    );
 
 
-/* Tasks and functions definitions */
+    /* Submodules placement */
 
-function void initialize_code_rom();
-    $readmemh("sw/build/app.mem", dut.u_code_rom.mem);
-endfunction
+    soc dut (
+        .clk,
+        .rst_n,
 
-task test_data_ram();
-    for (int i = 0; i < 60000; ++i)
-        @(negedge clk) ;
+        .uart_sout(),
+        .uart_sin (1'b1),
 
-    for (int i = 0; i < 1024; ++i) begin
-        assert (dut.u_data_ram.mem[i] == i) else
-            $error("dut.u_data_ram.mem[%3d]: exp: 0x%x, rcv: 0x%x", i, i, dut.u_data_ram.mem[i]);
+        .gpio_dout(),
+        .gpio_din (32'b0)
+    );
+
+
+    /* Tasks and functions definitions */
+
+    function void initialize_code_rom();
+        $readmemh("sw/build/app.mem", dut.u_code_rom.mem);
+    endfunction
+
+    task test_data_ram();
+        for (int i = 0; i < 60000; ++i) @(negedge clk);
+
+        for (int i = 0; i < 1024; ++i) begin
+            assert (dut.u_data_ram.mem[i] == i)
+            else $error("dut.u_data_ram.mem[%3d]: exp: 0x%x, rcv: 0x%x", i, i, dut.u_data_ram.mem[i]);
+        end
+    endtask
+
+
+    /* Test */
+
+    initial begin
+        initialize_code_rom();
+
+        u_rst_n_gen.reset();
+
+        test_data_ram();
+
+        $finish;
     end
-endtask
-
-
-/* Test */
-
-initial begin
-    initialize_code_rom();
-
-    u_rst_n_gen.reset();
-
-    test_data_ram();
-
-    $finish;
-end
 
 endmodule

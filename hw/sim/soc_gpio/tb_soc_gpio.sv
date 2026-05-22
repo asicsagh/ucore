@@ -3,73 +3,67 @@
 module tb_soc_gpio;
 
 
-/* Local variables and signals */
+    /* Local variables and signals */
 
-logic        clk, rst_n;
+    logic clk, rst_n;
 
-logic [31:0] gpio_dout, gpio_din;
-
-
-/* BFMs instantiation */
-
-clk_gen #(
-    .FREQUENCY_MHZ(50)
-) u_clk_gen (
-    .clk
-);
-
-rst_n_gen u_rst_n_gen (
-    .rst_n,
-    .clk
-);
+    logic [31:0] gpio_dout, gpio_din;
 
 
-/* Submodules placement */
+    /* BFMs instantiation */
 
-soc dut (
-    .clk,
-    .rst_n,
+    clk_gen #(.FREQUENCY_MHZ(50)) u_clk_gen (.clk);
 
-    .uart_sout(),
-    .uart_sin(1'b1),
-
-    .gpio_dout,
-    .gpio_din
-);
+    rst_n_gen u_rst_n_gen (
+        .rst_n,
+        .clk
+    );
 
 
-/* Tasks and functions definitions */
+    /* Submodules placement */
 
-function void initialize_code_rom();
-    $readmemh("sw/build/app.mem", dut.u_code_rom.mem);
-endfunction
+    soc dut (
+        .clk,
+        .rst_n,
 
-task test_gpio();
-    gpio_din = 32'ha5a5a5a5;
+        .uart_sout(),
+        .uart_sin (1'b1),
 
-    for (int i = 0; i < 200; ++i)
-        @(negedge clk);
-
-    assert (gpio_dout == 32'h5a5a5a5a) else
-        $error("gpio_dout: exp: 0x%x, rcv: 0x%x", 32'h5a5a5a5a, gpio_dout);
-endtask
+        .gpio_dout,
+        .gpio_din
+    );
 
 
-/* Test */
+    /* Tasks and functions definitions */
 
-initial begin
-    initialize_code_rom();
+    function void initialize_code_rom();
+        $readmemh("sw/build/app.mem", dut.u_code_rom.mem);
+    endfunction
 
-    gpio_din = 32'h0;
+    task test_gpio();
+        gpio_din = 32'ha5a5a5a5;
 
-    u_rst_n_gen.reset();
+        for (int i = 0; i < 200; ++i) @(negedge clk);
 
-    for (int i = 0; i < 100; ++i)
-        @(negedge clk);
+        assert (gpio_dout == 32'h5a5a5a5a)
+        else $error("gpio_dout: exp: 0x%x, rcv: 0x%x", 32'h5a5a5a5a, gpio_dout);
+    endtask
 
-    test_gpio();
 
-    $finish;
-end
+    /* Test */
+
+    initial begin
+        initialize_code_rom();
+
+        gpio_din = 32'h0;
+
+        u_rst_n_gen.reset();
+
+        for (int i = 0; i < 100; ++i) @(negedge clk);
+
+        test_gpio();
+
+        $finish;
+    end
 
 endmodule

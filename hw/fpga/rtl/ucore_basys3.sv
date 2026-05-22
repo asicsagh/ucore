@@ -1,63 +1,63 @@
 /* Copyright (C) 2025  AGH University of Krakow */
 
 module ucore_basys3 (
-    input logic        refclk,
+    input logic refclk,
 
-    input logic        btnC,
+    input logic btnC,
 
-    output logic       RsTx,
-    input logic        RsRx,
+    output logic RsTx,
+    input  logic RsRx,
 
     output logic [3:0] led,
-    input logic [3:0]  sw
+    input  logic [3:0] sw
 );
 
 
-/* Local variables and signals */
+    /* Local variables and signals */
 
-logic        clk, rst_n, io_rst_n, pll_clk, pll_locked;
+    logic clk, rst_n, io_rst_n, pll_clk, pll_locked;
 
-logic [31:0] gpio_dout;
-
-
-/* Signals assignments */
-
-assign clk = pll_clk;
-
-assign io_rst_n = ~btnC;
-
-assign led[3:0] = gpio_dout[3:0];
+    logic [31:0] gpio_dout;
 
 
-/* Submodules placement */
+    /* Signals assignments */
 
-pll u_pll (
-    .refclk,
-    .io_rst_n,
+    assign clk = pll_clk;
 
-    .clk(pll_clk),
-    .locked(pll_locked)
-);
+    assign io_rst_n = ~btnC;
 
-reset_synchronizer u_reset_synchronizer (
-    .refclk,
-    .io_rst_n,
+    assign led[3:0] = gpio_dout[3:0];
 
-    .pll_clk,
-    .pll_locked,
 
-    .rst_n
-);
+    /* Submodules placement */
 
-soc u_soc (
-    .clk,
-    .rst_n,
+    pll u_pll (
+        .refclk,
+        .io_rst_n,
 
-    .uart_sout(RsTx),
-    .uart_sin(RsRx),
+        .clk(pll_clk),
+        .locked(pll_locked)
+    );
 
-    .gpio_dout,
-    .gpio_din({28'b0, sw})
-);
+    reset_synchronizer u_reset_synchronizer (
+        .refclk,
+        .io_rst_n,
+
+        .pll_clk,
+        .pll_locked,
+
+        .rst_n
+    );
+
+    soc u_soc (
+        .clk,
+        .rst_n,
+
+        .uart_sout(RsTx),
+        .uart_sin (RsRx),
+
+        .gpio_dout,
+        .gpio_din({28'b0, sw})
+    );
 
 endmodule

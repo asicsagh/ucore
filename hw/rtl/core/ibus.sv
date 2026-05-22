@@ -2,21 +2,11 @@
 
 interface ibus;
 
-logic [31:0] addr, rdata;
-logic        rreq, rvalid;
+    logic [31:0] addr, rdata;
+    logic rreq, rvalid;
 
-modport master (
-    output addr,
-    output rreq,
-    input rvalid,
-    input rdata
-);
+    modport master(output addr, output rreq, input rvalid, input rdata);
 
-modport slave (
-    output rvalid,
-    output rdata,
-    input addr,
-    input rreq
-);
+    modport slave(output rvalid, output rdata, input addr, input rreq);
 
 endinterface

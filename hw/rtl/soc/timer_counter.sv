@@ -1,72 +1,65 @@
 /* Copyright (C) 2025  AGH University of Krakow */
 
 module timer_counter (
-    input logic         clk,
-    input logic         rst_n,
+    input logic clk,
+    input logic rst_n,
 
     output logic [31:0] value,
-    input logic         en
+    input  logic        en
 );
 
 
-/* User defined types */
+    /* User defined types */
 
-typedef enum logic {
-    IDLE,
-    ACTIVE
-} state_t;
-
-
-/* Local variables and signals */
-
-state_t      state, state_nxt;
-
-logic [31:0] value_nxt;
+    typedef enum logic {
+        IDLE,
+        ACTIVE
+    } state_t;
 
 
-/* Module internal logic */
+    /* Local variables and signals */
 
-always_ff @(posedge clk or negedge rst_n) begin
-    if (!rst_n)
-        state <= IDLE;
-    else
-        state <= state_nxt;
-end
+    state_t state, state_nxt;
 
-always_comb begin
-    state_nxt = state;
+    logic [31:0] value_nxt;
 
-    case (state)
-    IDLE: begin
-        if (en)
-            state_nxt = ACTIVE;
+
+    /* Module internal logic */
+
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) state <= IDLE;
+        else state <= state_nxt;
     end
-    ACTIVE: begin
-        if (!en)
-            state_nxt = IDLE;
-    end
-    endcase
-end
 
-always_ff @(posedge clk or negedge rst_n) begin
-    if (!rst_n)
-        value <= 32'b0;
-    else
-        value <= value_nxt;
-end
+    always_comb begin
+        state_nxt = state;
 
-always_comb begin
-    value_nxt = value;
+        case (state)
+            IDLE: begin
+                if (en) state_nxt = ACTIVE;
+            end
+            ACTIVE: begin
+                if (!en) state_nxt = IDLE;
+            end
+        endcase
+    end
 
-    case (state)
-    IDLE: begin
-        if (en)
-            value_nxt = 32'b0;
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) value <= 32'b0;
+        else value <= value_nxt;
     end
-    ACTIVE: begin
-        value_nxt = value + 1;
+
+    always_comb begin
+        value_nxt = value;
+
+        case (state)
+            IDLE: begin
+                if (en) value_nxt = 32'b0;
+            end
+            ACTIVE: begin
+                value_nxt = value + 1;
+            end
+        endcase
     end
-    endcase
-end
 
 endmodule
