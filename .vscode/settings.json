@@ -1,0 +1,184 @@
+{
+    "[systemverilog]": {
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": false,
+        "editor.insertSpaces": true,
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "other": "off",
+            "strings": "off"
+        },
+        "editor.tabSize": 4
+    },
+    "DVT.contentFilters.enable": true,
+    // "DVT.textEditor.formatting.maximumNumberOfLinesInFile": 10000,
+    "DVT.textEditor.systemVerilog.formatting.indentation.addNewLineAfterBeginAndBeforeEnd": true,
+    "DVT.textEditor.systemVerilog.formatting.indentation.addNewLineAfterEnd": true,
+    // "DVT.textEditor.systemVerilog.formatting.indentation.closeScopeMacros": [], // #TODO
+    // "DVT.textEditor.systemVerilog.formatting.indentation.doNotIndentMulti-lineMacroDefinitions": false, // #TODO
+    "DVT.textEditor.systemVerilog.formatting.indentation.doNotIndentSingleLineCommentsAtBeginningOfLine": false,
+    "DVT.textEditor.systemVerilog.formatting.indentation.else": "On the same line",
+    "DVT.textEditor.systemVerilog.formatting.indentation.enableMoreParametersPerLineIfLessThan": true, // default
+    // "DVT.textEditor.systemVerilog.formatting.indentation.ignoreLinesStartingWith": [], // #TODO
+    // "DVT.textEditor.systemVerilog.formatting.indentation.implicitSemiMacros": [
+    //     "ovm_info()",
+    //     "ovm_warning()",
+    //     "ovm_error()",
+    //     "ovm_fatal()",
+    //     "ovm_create()",
+    //     "ovm_create_on()",
+    //     "ovm_do()",
+    //     "ovm_do_pri()",
+    //     "ovm_do_with()",
+    //     "ovm_do_pri_with()",
+    //     "ovm_do_on()",
+    //     "ovm_do_on_pri()",
+    //     "ovm_do_on_with()",
+    //     "ovm_do_on_pri_with()",
+    //     "ovm_do_seq()",
+    //     "ovm_do_seq_with()",
+    //     "ovm_send()",
+    //     "ovm_send_pri()",
+    //     "ovm_rand_send()",
+    //     "ovm_rand_send_pri()",
+    //     "ovm_rand_send_with()",
+    //     "ovm_rand_send_pri_with()",
+    //     "ovm_do_callbacks()",
+    //     "ovm_do_obj_callbacks()",
+    //     "ovm_do_task_callbacks()",
+    //     "ovm_do_callbacks_exit_on()",
+    //     "ovm_do_obj_callbacks_exit_on()",
+    //     "ovm_cb_trace()",
+    //     "ovm_cb_trace_noobj()",
+    //     "uvm_info()",
+    //     "uvm_warning()",
+    //     "uvm_error()",
+    //     "uvm_fatal()",
+    //     "uvm_create()",
+    //     "uvm_create_on()",
+    //     "uvm_create_seq()",
+    //     "uvm_do()",
+    //     "uvm_do_pri()",
+    //     "uvm_do_with()",
+    //     "uvm_do_pri_with()",
+    //     "uvm_do_on()",
+    //     "uvm_do_on_pri()",
+    //     "uvm_do_on_with()",
+    //     "uvm_do_on_pri_with()",
+    //     "uvm_do_seq()",
+    //     "uvm_do_seq_with()",
+    //     "uvm_send()",
+    //     "uvm_send_pri()",
+    //     "uvm_rand_send()",
+    //     "uvm_rand_send_pri()",
+    //     "uvm_rand_send_with()",
+    //     "uvm_rand_send_pri_with()",
+    //     "uvm_register_cb()",
+    //     "uvm_set_super_type()",
+    //     "uvm_do_callbacks()",
+    //     "uvm_do_obj_callbacks()",
+    //     "uvm_do_callbacks_exit_on()",
+    //     "uvm_do_obj_callbacks_exit_on()",
+    //     "uvm_cb_trace()",
+    //     "uvm_cb_trace_noobj()"
+    // ],
+    "DVT.textEditor.systemVerilog.formatting.indentation.indentMulti-lineAssigns": true, // default
+    "DVT.textEditor.systemVerilog.formatting.indentation.indentMultiLineComments": true, // default
+    "DVT.textEditor.systemVerilog.formatting.indentation.moreParametersPerLineIfLessThan": 3,
+    "DVT.textEditor.systemVerilog.formatting.indentation.noIndentKeywords": {
+        "assert": false,
+        "assign": false,
+        "assume": false,
+        "case": false,
+        "casex": false,
+        "casez": false,
+        "checker": false,
+        "class": true,
+        "clocking": false,
+        "config": false,
+        "cover": false,
+        "covergroup": false,
+        "fork": false,
+        "function": false,
+        "generate": false,
+        "group": false,
+        "interface": true,
+        "macromodule": false,
+        "module": true,
+        "package": true,
+        "primitive": false,
+        "program": true,
+        "property": false,
+        "randcase": false,
+        "randsequence": false,
+        "sequence": false,
+        "specify": false,
+        "table": false,
+        "task": false
+    },
+    // "DVT.textEditor.systemVerilog.formatting.indentation.openScopeMacros": [], // #TODO
+    "DVT.textEditor.systemVerilog.formatting.indentation.optionalBegin": "On the same line", // DO NOT USE THIS? buggy?
+    "DVT.textEditor.systemVerilog.formatting.indentation.parameters": "One per line (open parenthesis on the same line)",
+    // "DVT.textEditor.systemVerilog.formatting.indentation.preprocessing": "Leave as is", // #TODO
+    "DVT.textEditor.systemVerilog.formatting.lineWrapping.enableLineWrapping": true,
+    "DVT.textEditor.systemVerilog.formatting.lineWrapping.lineWidth": 120,
+    "DVT.textEditor.systemVerilog.formatting.lineWrapping.wrapMultiLineComments": true, // #TODO test it
+    "DVT.textEditor.systemVerilog.formatting.lineWrapping.wrapSingleLineComments": true,
+    "DVT.textEditor.systemVerilog.formatting.verticalAlignment.compactWhitespaceForVerticalAlignPatterns": true,
+    "DVT.textEditor.systemVerilog.formatting.verticalAlignment.enableVerticalAlignment": false,
+    // "DVT.textEditor.systemVerilog.formatting.verticalAlignment.independentPreprocessingScopes": false, // #TODO
+    "DVT.textEditor.systemVerilog.formatting.verticalAlignment.onlyConsecutiveLines": true,
+    "DVT.textEditor.systemVerilog.formatting.verticalAlignment.verticalAlignPatterns": {
+        // "`defines": true,
+        // "`xvm_field macros": false, #TODO
+        // "By Name Port Connections": true, // #TODO reconsider
+        // #TODO decide whether use "split dimensions" variant for all items below or not
+        // "Class Declarations": true,
+        // "Class Declarations (split dimensions)": true,
+        // "Class Variable Declarations": true,
+        // "Class Variable Declarations (split dimensions)": true,
+        // "Function Declarations": true,
+        // "Function Declarations (split dimensions)": true,
+        // "Function Variable Declarations": true,
+        // "Function Variable Declarations (split dimensions)": true,
+        // "Interface Port Declarations": true,
+        // "Interface Port Declarations (split dimensions)": true,
+        // "Interface Signal Declarations": true,
+        // "Interface Signal Declarations (split dimensions)": true,
+        // "Library & Package Parameter Declarations": true,
+        // "Library & Package Parameter Declarations (split dimensions)": true,
+        // "Module Port Declarations": true,
+        // "Module Port Declarations (split dimensions)": true,
+        // "Module Signal Declarations": true
+        // "Module Signal Declarations (split dimensions)": true
+    },
+    "DVT.textEditor.systemVerilog.formatting.verticalAlignment.verticalAlignSingleLineComments": false,
+    // "DVT.textEditor.systemVerilog.formatting.verticalAlignment.verticalAlignTokens": [ // #TODO
+    //     ":=",
+    //     "<=",
+    // ],
+    "DVT.textEditor.systemVerilog.formatting.verticalAlignment.verticalAlignToOpenCurly": false, // default
+    "DVT.textEditor.systemVerilog.formatting.verticalAlignment.verticalAlignToOpenParenthesis": false, // default
+    "DVT.textEditor.systemVerilog.formatting.whitespace.addWhitespaceAfter": [
+        // #TODO Does not work if list has more than one element??
+        // "<=",
+        "="
+    ],
+    "DVT.textEditor.systemVerilog.formatting.whitespace.addWhitespaceBefore": [
+        // #TODO Does not work if list has more than one element??
+        // "<=",
+        "="
+    ],
+    "DVT.textEditor.systemVerilog.formatting.whitespace.compactConsecutiveEmptyLines": true,
+    "DVT.textEditor.systemVerilog.formatting.whitespace.compactWhitespaceGroups": true,
+    "DVT.textEditor.systemVerilog.formatting.whitespace.maximumNumberOfConsecutiveEmptyLines": 2,
+    "DVT.textEditor.systemVerilog.formatting.whitespace.removeNewLineAfter": [
+        "="
+    ],
+    "DVT.textEditor.systemVerilog.formatting.whitespace.removeNewLineBefore": [
+        "=" // #TODO does not work as expected?
+    ],
+    "DVT.textEditor.systemVerilog.formatting.whitespace.trimEndOfLineWhitespace": true, // default
+    "DVT.textEditor.systemVerilog.formatting.whitespace.trimWhitespaceLines": true, // default
+}

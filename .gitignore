@@ -12,6 +12,8 @@ hw/sim/*/xrun.log
 
 sw/**/build
 
-.dvt
-.vscode
+.dvt/*
+!.dvt/default.build
+.vscode/*
+!.vscode/settings.json
 *.log
